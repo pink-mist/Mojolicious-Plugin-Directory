@@ -175,8 +175,6 @@ sub get_ext {
 
 1;
 
-__END__
-
 =head1 NAME
 
 Mojolicious::Plugin::Directory - Serve static files from document root with directory index
