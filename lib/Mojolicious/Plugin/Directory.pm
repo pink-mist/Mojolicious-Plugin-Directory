@@ -9,36 +9,6 @@ use DirHandle;
 use Mojo::Base qw{ Mojolicious::Plugin };
 use Mojolicious::Types;
 
-# Stolen from Plack::App::Direcotry
-my $dir_page = <<'PAGE';
-<html><head>
-  <title>Index of <%= $current %></title>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <style type='text/css'>
-table { width:100%%; }
-.name { text-align:left; }
-.size, .mtime { text-align:right; }
-.type { width:11em; }
-.mtime { width:15em; }
-  </style>
-</head><body>
-<h1>Index of <%= $current %></h1>
-<hr />
-<table>
-  <tr>
-    <th class='name'>Name</th>
-    <th class='size'>Size</th>
-    <th class='type'>Type</th>
-    <th class='mtime'>Last Modified</th>
-  </tr>
-  % for my $file (@$files) {
-  <tr><td class='name'><a href='<%= $file->{url} %>'><%== $file->{name} %></a></td><td class='size'><%= $file->{size} %></td><td class='type'><%= $file->{type} %></td><td class='mtime'><%= $file->{mtime} %></td></tr>
-  % }
-</table>
-<hr />
-</body></html>
-PAGE
-
 my $types = Mojolicious::Types->new;
 
 sub register {
@@ -49,13 +19,11 @@ sub register {
     my $index       = $args->{dir_index};
     my $enable_json = $args->{enable_json};
 
+    my $css         = $args->{css} || 'style';
     my $render_opts = $args->{render_opts} || {};
-    if ( my $template = $args->{dir_template} ) {
-        $render_opts->{template} = $template;
-    }
-    else {
-        $render_opts->{inline} = $args->{dir_page} || $dir_page;
-    }
+    $render_opts->{template} = $args->{dir_template} || 'list';
+    push @{ $app->renderer->classes }, __PACKAGE__;
+    push @{ $app->static->classes }, __PACKAGE__;
 
     $app->hook(
         before_dispatch => sub {
@@ -74,6 +42,7 @@ sub register {
                     return render_file( $c, $file );
                 }
 
+                $c->stash(css => $css),
                 render_indexes( $c, $path, $render_opts, $enable_json )
                     unless ( $c->tx->res->code );
             }
@@ -215,33 +184,6 @@ if root is a file, serve only root file.
 
 like a Apache's DirectoryIndex directive.
 
-=head2 C<dir_page>
-
-  my $template_str = <<EOT
-  <!DOCTYPE html>
-  <html lang="ja">
-  ...
-  </html>
-  EOT
-
-  plugin Directory => { dir_page => $template_str };
-
-a HTML template of index page.
-
-"$files" and "$current" are passed in stash.
-
-=over 2
-
-=item $files: Array[Hash]
-
-list of files and directories
-
-=item $current: String
-
-current path
-
-=back
-
 =head2 C<dir_template>
 
   plugin Directory => { dir_template => 'index' };
@@ -270,15 +212,14 @@ current path
   <html>
     <head><title><%= title %></title></head>
     <body><%= content %></body>
+    %= include $css;
   </html>
 
 a template name of index page.
 
-this option takes precedence over the C<dir_page>.
+"$files", "$current", and "$css" are passed in stash.
 
-"$files" and "$current" are passed in stash.
-
-=over 2
+=over 3
 
 =item $files: Array[Hash]
 
@@ -287,6 +228,10 @@ list of files and directories
 =item $current: String
 
 current path
+
+=item $css: String
+
+name of template with css that you want to include
 
 =back
 
@@ -332,3 +277,53 @@ This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =cut
+
+__DATA__
+
+@@ layouts/default.html.ep
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    %= include $css;
+  </head>
+  <body>
+
+<%= content %>
+
+  </body>
+</html>
+
+
+@@ list.html.ep
+% title "Index of $current";
+% layout 'default';
+<hr />
+<table>
+  <tr>
+    <th class='name'>Name</th>
+    <th class='size'>Size</th>
+    <th class='type'>Type</th>
+    <th class='mtime'>Last Modified</th>
+  </tr>
+  % for my $file (@$files) {
+  <tr>
+    <td class='name'><a href='<%= $file->{url} %>'><%== $file->{name} %></a></td>
+    <td class='size'><%= $file->{size} %></td>
+    <td class='type'><%= $file->{type} %></td>
+    <td class='mtime'><%= $file->{mtime} %></td>
+  </tr>
+  % }
+</table>
+<hr />
+
+
+@@ style.html.ep
+  <style type='text/css'>
+table { width:100%%; }
+.name { text-align:left; }
+.size, .mtime { text-align:right; }
+.type { width:11em; }
+.mtime { width:15em; }
+  </style>
