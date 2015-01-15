@@ -3,7 +3,7 @@ use Mojolicious::Lite;
 use Text::Markdown qw/markdown/;
 use Encode qw/encode_utf8 decode_utf8/;
 
-plugin 'Directory', {
+plugin 'Directory::Stylish', {
     auto_index => 0, # disabled directory index
     dir_index  => 'index.md',
     root       => app->home->rel_dir('documents'),
