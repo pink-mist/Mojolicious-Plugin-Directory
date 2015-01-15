@@ -80,7 +80,7 @@ Like a Apache's DirectoryIndex directive.
       %= include $css;
     </html>
 
-a template name of index page.
+A name for the template to use for the index page.
 
 "$files", "$current", and "$css" are passed in stash.
 
@@ -123,6 +123,23 @@ If not rendered in CODEREF, serve as static file.
     plugin 'Directory::Stylish' => { enable_json => 1 };
 
 enable json response.
+
+## `css`
+
+    plugin 'Directory::Stylish' => { css => 'custom_template' };
+
+    ...
+    __DATA__
+
+    @@ custom_template.html.ep
+    <style type="text/css">
+    body { background: black; color: white; }
+    </style>
+
+A name for the template with css that will be included by the default template
+for the index.
+
+This name will be available as `$css` in the stash.
 
 # CONTRIBUTORS
 
