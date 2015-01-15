@@ -174,13 +174,20 @@ L<Mojolicious::Plugin::Directory::Stylish> supports the following options.
 
 Document root directory. Defaults to the current directory.
 
-if root is a file, serve only root file.
+If root is a file, serve only root file.
+
+=head2 C<auto_index>
+
+  # Mojolicious::Lite
+  plugin Directory => { auto_index => 0 };
+
+Automatically generate index page for directory, default true.
 
 =head2 C<dir_index>
 
   plugin 'Directory::Stylish' => { dir_index => [qw/index.html index.htm/] };
 
-like a Apache's DirectoryIndex directive.
+Like a Apache's DirectoryIndex directive.
 
 =head2 C<dir_template>
 
@@ -252,7 +259,7 @@ name of template with css that you want to include
 
 CODEREF for handle a request file.
 
-if not rendered in CODEREF, serve as static file.
+If not rendered in CODEREF, serve as static file.
 
 =head2 C<enable_json>
 
