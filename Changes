@@ -4,7 +4,7 @@ Revision history for Mojolicious-Plugin-Directory-Stylish
         - renamed module to Mojolicious::Plugin::Directory::Stylish
         - removed 'dir_page' option
         - added options 'dir_template', 'enable_json', and 'css'
-        - fixed to stop using geven-when syntax
+        - fixed to stop using given/when syntax
 
 
 Revision history for Mojolicious-Plugin-Directory
