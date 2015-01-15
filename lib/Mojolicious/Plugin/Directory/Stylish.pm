@@ -260,19 +260,14 @@ if not rendered in CODEREF, serve as static file.
 
 enable json response.
 
-=head1 AUTHOR
-
-hayajo E<lt>hayajo@cpan.orgE<gt> - Original author of L<Mojolicious::Plugin::Directory>
-pink mist E<lt>coffee@cpan.orgE<gt>
-
 =head1 SEE ALSO
 
+L<Mojolicious::Plugin::Directory>
 L<Plack::App::Directory>
 
-=head1 LICENSE
+=head1 ORIGINAL AUTHOR
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+hayajo E<lt>hayajo@cpan.orgE<gt> - Original author of L<Mojolicious::Plugin::Directory>
 
 =cut
 
