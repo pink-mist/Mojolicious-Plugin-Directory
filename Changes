@@ -1,6 +1,8 @@
 Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
+
+1.000     2015-01-15 19:49:49+01:00 Europe/Stockholm
         - Making a proper releasable version
         - CSS and HTML remade so the module's new name is no longer a lie =)
 
