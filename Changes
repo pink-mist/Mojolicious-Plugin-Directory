@@ -1,6 +1,8 @@
 Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
+
+0.001001  2015-01-15 17:28:52+01:00 Europe/Stockholm
         - Don't load files completely into memory before serving
         - Documentation fixes:
           * README.md brought up to speed
