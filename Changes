@@ -1,6 +1,9 @@
 Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
+        - Don't load files completely into memory before serving
+
+0.001     2015-01-15 11:41:34+01:00 Europe/Stockholm
         - renamed module to Mojolicious::Plugin::Directory::Stylish
         - removed 'dir_page' option
         - added options 'dir_template', 'enable_json', and 'css'
