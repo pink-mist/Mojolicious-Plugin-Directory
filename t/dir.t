@@ -1,14 +1,14 @@
 use Mojo::Base qw{ -strict };
 use Mojolicious::Lite;
 
+use Test::More tests => 2;
+use Test::Mojo;
+
 use File::Basename;
 use Encode ();
 
 my $dir = dirname(__FILE__);
 plugin 'Directory::Stylish', root => $dir, enable_json => 1;
-
-use Test::More tests => 2;
-use Test::Mojo;
 
 my $t = Test::Mojo->new();
 
