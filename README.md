@@ -146,11 +146,12 @@ This name will be available as `$css` in the stash.
 Many thanks to the contributors for their work.
 
 - ChinaXing
+- Su-Shee
 
 # SEE ALSO
 
-[Mojolicious::Plugin::Directory](https://metacpan.org/pod/Mojolicious::Plugin::Directory)
-[Plack::App::Directory](https://metacpan.org/pod/Plack::App::Directory)
+- [Mojolicious::Plugin::Directory](https://metacpan.org/pod/Mojolicious::Plugin::Directory)
+- [Plack::App::Directory](https://metacpan.org/pod/Plack::App::Directory)
 
 # ORIGINAL AUTHOR
 

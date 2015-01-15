@@ -226,15 +226,15 @@ A name for the template to use for the index page.
 
 =over 2
 
-=item $files: Array[Hash]
+=item * $files: Array[Hash]
 
 list of files and directories
 
-=item $current: String
+=item * $current: String
 
 current path
 
-=item $css: String
+=item * $css: String
 
 name of template with css that you want to include
 
@@ -299,8 +299,13 @@ Many thanks to the contributors for their work.
 
 =head1 SEE ALSO
 
-L<Mojolicious::Plugin::Directory>
-L<Plack::App::Directory>
+=over 2
+
+=item * L<Mojolicious::Plugin::Directory>
+
+=item * L<Plack::App::Directory>
+
+=back
 
 =head1 ORIGINAL AUTHOR
 
