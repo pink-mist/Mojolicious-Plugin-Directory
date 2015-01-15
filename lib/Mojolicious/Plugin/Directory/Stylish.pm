@@ -267,7 +267,7 @@ Many thanks to the contributors for their work.
 
 =over 2
 
-=item ChinaXing
+=item * ChinaXing
 
 =back
 
