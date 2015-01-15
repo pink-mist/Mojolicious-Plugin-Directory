@@ -2,6 +2,10 @@
 
 Mojolicious::Plugin::Directory::Stylish - Serve static files from document root with directory index using Mojolicious templates
 
+# VERSION
+
+version 0.001
+
 # SYNOPSIS
 
     use Mojolicious::Lite;
@@ -73,13 +77,12 @@ Like a Apache's DirectoryIndex directive.
     <html>
       <head><title><%= title %></title></head>
       <body><%= content %></body>
+      %= include $css;
     </html>
 
 a template name of index page.
 
-this option takes precedence over the `dir_page`.
-
-"$files" and "$current" are passed in stash.
+"$files", "$current", and "$css" are passed in stash.
 
 - $files: Array\[Hash\]
 
@@ -91,7 +94,7 @@ this option takes precedence over the `dir_page`.
 
 - $css: String
 
-    name of the template with css you want to include
+    name of template with css that you want to include
 
 ## `handler`
 
@@ -99,7 +102,7 @@ this option takes precedence over the `dir_page`.
     use Path::Class;
     use Encode qw{ decode_utf8 };
 
-    plugin Directory::Stylish => {
+    plugin 'Directory::Stylish' => {
         handler => sub {
             my ($c, $path) = @_;
             if ($path =~ /\.(md|mkdn)$/) {
@@ -113,15 +116,6 @@ this option takes precedence over the `dir_page`.
 CODEREF for handle a request file.
 
 If not rendered in CODEREF, serve as static file.
-
-## `json`
-
-    # Mojolicious::Lite
-    # /dir (Accept: application/json)
-    # /dir?format=json
-    plugin Directory => { json => 1 };
-
-Enable json response.
 
 ## `enable_json`
 
