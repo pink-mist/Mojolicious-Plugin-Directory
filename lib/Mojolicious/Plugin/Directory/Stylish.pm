@@ -293,6 +293,8 @@ Many thanks to the contributors for their work.
 
 =item * ChinaXing
 
+=item * Su-Shee
+
 =back
 
 =head1 SEE ALSO
