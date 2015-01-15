@@ -1,32 +1,32 @@
 # NAME
 
-Mojolicious::Plugin::Directory - Serve static files from document root with directory index
+Mojolicious::Plugin::Directory::Stylish - Serve static files from document root with directory index using Mojolicious templates
 
 # SYNOPSIS
 
     use Mojolicious::Lite;
-    plugin 'Directory';
+    plugin 'Directory::Stylish';
     app->start;
 
 or
 
-    > perl -Mojo -E 'a->plugin("Directory")->start' daemon
+    > perl -Mojo -E 'a->plugin("Directory::Stylish")->start' daemon
 
 # DESCRIPTION
 
-[Mojolicious::Plugin::Directory](http://search.cpan.org/perldoc?Mojolicious::Plugin::Directory) is a static file server directory index a la Apache's mod\_autoindex.
+[Mojolicious::Plugin::Directory::Stylish](https://metacpan.org/pod/Mojolicious::Plugin::Directory::Stylish) is a static file server directory index a la Apache's mod\_autoindex.
 
 # METHODS
 
-[Mojolicious::Plugin::Directory](http://search.cpan.org/perldoc?Mojolicious::Plugin::Directory) inherits all methods from [Mojolicious::Plugin](http://search.cpan.org/perldoc?Mojolicious::Plugin).
+[Mojolicious::Plugin::Directory::Stylish](https://metacpan.org/pod/Mojolicious::Plugin::Directory::Stylish) inherits all methods from [Mojolicious::Plugin](https://metacpan.org/pod/Mojolicious::Plugin).
 
 # OPTIONS
 
-[Mojolicious::Plugin::Directory](http://search.cpan.org/perldoc?Mojolicious::Plugin::Directory) supports the following options.
+[Mojolicious::Plugin::Directory::Stylish](https://metacpan.org/pod/Mojolicious::Plugin::Directory::Stylish) supports the following options.
 
 ## `root`
 
-    plugin Directory => { root => "/path/to/htdocs" };
+    plugin 'Directory::Stylish' => { root => "/path/to/htdocs" };
 
 Document root directory. Defaults to the current directory.
 
@@ -34,39 +34,16 @@ if root is a file, serve only root file.
 
 ## `dir_index`
 
-    plugin Directory => { dir_index => [qw/index.html index.htm/] };
+    plugin 'Directory::Stylish' => { dir_index => [qw/index.html index.htm/] };
 
 like a Apache's DirectoryIndex directive.
 
-## `dir_page`
-
-    my $template_str = <<EOT
-    <!DOCTYPE html>
-    <html lang="ja">
-    ...
-    </html>
-    EOT
-
-    plugin Directory => { dir_page => $template_str };
-
-a HTML template of index page.
-
-"$files" and "$current" are passed in stash.
-
-- $files: Array\[Hash\]
-
-    list of files and directories
-
-- $current: String
-
-    current path
-
 ## `dir_template`
 
-    plugin Directory => { dir_template => 'index' };
+    plugin 'Directory::Stylish' => { dir_template => 'index' };
 
     # with 'render_opts' option
-    plugin Directory => {
+    plugin 'Directory::Stylish' => {
         dir_template => 'index',
         render_opts  => { format => 'html', handler => 'ep' },
     };
@@ -105,13 +82,17 @@ this option takes precedence over the `dir_page`.
 
     current path
 
+- $css: String
+
+    name of the template with css you want to include
+
 ## `handler`
 
     use Text::Markdown qw{ markdown };
     use Path::Class;
     use Encode qw{ decode_utf8 };
 
-    plugin Directory => {
+    plugin Directory::Stylish => {
         handler => sub {
             my ($c, $path) = @_;
             if ($path =~ /\.(md|mkdn)$/) {
@@ -129,19 +110,26 @@ if not rendered in CODEREF, serve as static file.
 ## `enable_json`
 
     # http://host/directory?format=json
-    plugin Directory => { enable_json => 1 };
+    plugin 'Directory::Stylish' => { enable_json => 1 };
 
 enable json response.
 
-# AUTHOR
-
-hayajo <hayajo@cpan.org>
-
 # SEE ALSO
 
-[Plack::App::Directory](http://search.cpan.org/perldoc?Plack::App::Directory)
+[Mojolicious::Plugin::Directory](https://metacpan.org/pod/Mojolicious::Plugin::Directory)
+[Plack::App::Directory](https://metacpan.org/pod/Plack::App::Directory)
 
-# LICENSE
+# ORIGINAL AUTHOR
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+hayajo <hayajo@cpan.org> - Original author of [Mojolicious::Plugin::Directory](https://metacpan.org/pod/Mojolicious::Plugin::Directory)
+
+# AUTHOR
+
+Andreas Guldstrand <andreas.guldstrand@gmail.com>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2015 by Hayato Imai, Andreas Guldstrand.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
