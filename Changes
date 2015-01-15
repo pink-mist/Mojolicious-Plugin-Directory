@@ -2,6 +2,10 @@ Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
         - Don't load files completely into memory before serving
+        - Documentation fixes:
+          * README.md brought up to speed
+          * Add missing sections to POD - css and contributors
+          * Rewrite some POD to clarify and fix language issues
 
 0.001     2015-01-15 11:41:34+01:00 Europe/Stockholm
         - renamed module to Mojolicious::Plugin::Directory::Stylish
