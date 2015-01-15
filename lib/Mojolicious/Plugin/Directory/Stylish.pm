@@ -1,7 +1,8 @@
-package Mojolicious::Plugin::Directory;
+package Mojolicious::Plugin::Directory::Stylish;
+
+# ABSTRACT: Serve static files from document root with directory index using Mojolicious templates
 use strict;
 use warnings;
-our $VERSION = '0.07';
 
 use Cwd ();
 use Encode ();
@@ -144,35 +145,31 @@ sub get_ext {
 
 1;
 
-=head1 NAME
-
-Mojolicious::Plugin::Directory - Serve static files from document root with directory index
-
 =head1 SYNOPSIS
 
   use Mojolicious::Lite;
-  plugin 'Directory';
+  plugin 'Directory::Stylish';
   app->start;
 
 or
 
-  > perl -Mojo -E 'a->plugin("Directory")->start' daemon
+  > perl -Mojo -E 'a->plugin("Directory::Stylish")->start' daemon
 
 =head1 DESCRIPTION
 
-L<Mojolicious::Plugin::Directory> is a static file server directory index a la Apache's mod_autoindex.
+L<Mojolicious::Plugin::Directory::Stylish> is a static file server directory index a la Apache's mod_autoindex.
 
 =head1 METHODS
 
-L<Mojolicious::Plugin::Directory> inherits all methods from L<Mojolicious::Plugin>.
+L<Mojolicious::Plugin::Directory::Stylish> inherits all methods from L<Mojolicious::Plugin>.
 
 =head1 OPTIONS
 
-L<Mojolicious::Plugin::Directory> supports the following options.
+L<Mojolicious::Plugin::Directory::Stylish> supports the following options.
 
 =head2 C<root>
 
-  plugin Directory => { root => "/path/to/htdocs" };
+  plugin 'Directory::Stylish' => { root => "/path/to/htdocs" };
 
 Document root directory. Defaults to the current directory.
 
@@ -180,16 +177,16 @@ if root is a file, serve only root file.
 
 =head2 C<dir_index>
 
-  plugin Directory => { dir_index => [qw/index.html index.htm/] };
+  plugin 'Directory::Stylish' => { dir_index => [qw/index.html index.htm/] };
 
 like a Apache's DirectoryIndex directive.
 
 =head2 C<dir_template>
 
-  plugin Directory => { dir_template => 'index' };
+  plugin 'Directory::Stylish' => { dir_template => 'index' };
 
   # with 'render_opts' option
-  plugin Directory => {
+  plugin 'Directory::Stylish' => {
       dir_template => 'index',
       render_opts  => { format => 'html', handler => 'ep' },
   };
@@ -241,7 +238,7 @@ name of template with css that you want to include
   use Path::Class;
   use Encode qw{ decode_utf8 };
 
-  plugin Directory => {
+  plugin 'Directory::Stylish' => {
       handler => sub {
           my ($c, $path) = @_;
           if ($path =~ /\.(md|mkdn)$/) {
@@ -259,13 +256,14 @@ if not rendered in CODEREF, serve as static file.
 =head2 C<enable_json>
 
   # http://host/directory?format=json
-  plugin Directory => { enable_json => 1 };
+  plugin 'Directory::Stylish' => { enable_json => 1 };
 
 enable json response.
 
 =head1 AUTHOR
 
-hayajo E<lt>hayajo@cpan.orgE<gt>
+hayajo E<lt>hayajo@cpan.orgE<gt> - Original author of L<Mojolicious::Plugin::Directory>
+pink mist E<lt>coffee@cpan.orgE<gt>
 
 =head1 SEE ALSO
 

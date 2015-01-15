@@ -7,7 +7,7 @@ use Encode ();
 
 my $dir = dirname(__FILE__);
 plugin
-    'Directory',
+    'Directory::Stylish',
     root      => Mojo::Home->new($dir)->rel_dir('dir'),
     dir_index => [qw/index.html index.htm/];
 

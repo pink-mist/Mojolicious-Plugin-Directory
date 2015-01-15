@@ -4,8 +4,8 @@ use Mojolicious::Lite;
 use File::Basename;
 
 my $dir = dirname(__FILE__);
-# plugin 'Directory', root => $dir, dir_template => 'dump';
-plugin 'Directory', root => $dir, dir_template => 'dump', render_opts => { format => 'html', handler => 'ep' };
+# plugin 'Directory::Stylish', root => $dir, dir_template => 'dump';
+plugin 'Directory::Stylish', root => $dir, dir_template => 'dump', render_opts => { format => 'html', handler => 'ep' };
 
 use Test::More tests => 3;
 use Test::Mojo;

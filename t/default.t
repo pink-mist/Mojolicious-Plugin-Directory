@@ -1,7 +1,7 @@
 use Mojo::Base qw{ -strict };
 use Mojolicious::Lite;
 
-plugin 'Directory';
+plugin 'Directory::Stylish';
 
 use Test::More tests => 3;
 use Test::Mojo;

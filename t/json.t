@@ -4,7 +4,7 @@ use Mojolicious::Lite;
 use File::Basename;
 
 my $dir = dirname(__FILE__);
-plugin 'Directory', root => $dir, enable_json => 1;
+plugin 'Directory::Stylish', root => $dir, enable_json => 1;
 
 use Test::More tests => 3;
 use Test::Mojo;

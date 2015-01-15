@@ -5,7 +5,7 @@ use File::Basename;
 use File::Spec;
 
 my $dir = dirname(__FILE__);
-plugin 'Directory', root => File::Spec->catfile( $dir, 'dummy.txt' );
+plugin 'Directory::Stylish', root => File::Spec->catfile( $dir, 'dummy.txt' );
 
 use Test::More tests => 6;
 use Test::Mojo;
