@@ -1,8 +1,13 @@
-Revision history for Mojolicious-Plugin-Directory
+Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
-        - added options 'dir_template' and 'enable_json'
+        - renamed module to Mojolicious::Plugin::Directory::Stylish
+        - removed 'dir_page' option
+        - added options 'dir_template', 'enable_json', and 'css'
         - fixed to stop using geven-when syntax
+
+
+Revision history for Mojolicious-Plugin-Directory
 
 0.07  2013-05-17 11:50:14 JST
         - changed to Mojolicious::Controller#render from Mojolicious::Controller#render_data
