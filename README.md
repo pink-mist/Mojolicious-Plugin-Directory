@@ -4,7 +4,7 @@ Mojolicious::Plugin::Directory::Stylish - Serve static files from document root 
 
 # VERSION
 
-version 0.001001
+version 1.000
 
 # SYNOPSIS
 
