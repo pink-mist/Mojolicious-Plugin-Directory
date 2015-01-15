@@ -1,6 +1,13 @@
-Revision history for Mojolicious-Plugin-Directory
+Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
+        - renamed module to Mojolicious::Plugin::Directory::Stylish
+        - removed 'dir_page' option
+        - added options 'dir_template', 'enable_json', and 'css'
+        - fixed to stop using given/when syntax
+
+
+Revision history for Mojolicious-Plugin-Directory
 
 0.08  2013-06-09 16:34:06 JST
         - added auto_index configuration. thanks ChinaXing@github

@@ -4,9 +4,8 @@ use Mojolicious::Lite;
 use File::Basename;
 
 my $dir = dirname(__FILE__);
-plugin 'Directory', root => $dir, dir_page => <<'EOF';
-entries: <%= scalar @$files %>
-EOF
+# plugin 'Directory::Stylish', root => $dir, dir_template => 'dump';
+plugin 'Directory::Stylish', root => $dir, dir_template => 'dump', render_opts => { format => 'html', handler => 'ep' };
 
 use Test::More tests => 3;
 use Test::Mojo;
@@ -24,3 +23,17 @@ subtest 'entries' => sub {
     }
     $t->get_ok('/')->status_is(200)->content_like(qr/entries: $entries/);
 }
+
+__DATA__
+
+@@ dump.html.ep
+% layout 'default';
+% title 'Entries';
+entries: <%= scalar @$files %>
+
+@@ layouts/default.html.ep
+<!DOCTYPE html>
+<html>
+  <head><title><%= title %></title></head>
+  <body><%= content %></body>
+</html>

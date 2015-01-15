@@ -5,7 +5,7 @@ use File::Basename;
 use Encode ();
 
 my $dir = dirname(__FILE__);
-plugin 'Directory', root => $dir, json => 1;
+plugin 'Directory::Stylish', root => $dir, enable_json => 1;
 
 use Test::More tests => 2;
 use Test::Mojo;
