@@ -217,7 +217,7 @@ a template name of index page.
 
 "$files", "$current", and "$css" are passed in stash.
 
-=over 3
+=over 2
 
 =item $files: Array[Hash]
 
@@ -260,6 +260,16 @@ if not rendered in CODEREF, serve as static file.
   plugin 'Directory::Stylish' => { enable_json => 1 };
 
 enable json response.
+
+=head1 CONTRIBUTORS
+
+Many thanks to the contributors for their work.
+
+=over 2
+
+=item ChinaXing
+
+=back
 
 =head1 SEE ALSO
 
