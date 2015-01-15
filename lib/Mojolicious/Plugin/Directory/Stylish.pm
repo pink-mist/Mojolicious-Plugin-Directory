@@ -323,18 +323,22 @@ __DATA__
   </body>
 </html>
 
-
 @@ list.html.ep
-% title "Index of $current";
+% title "index of $current";
 % layout 'default';
-<hr />
+<h2>listing <%= $current %></h2>
+
+<div id="container">
 <table>
+  <thead>
   <tr>
-    <th class='name'>Name</th>
-    <th class='size'>Size</th>
-    <th class='type'>Type</th>
-    <th class='mtime'>Last Modified</th>
+    <th>filename</th>
+    <th class="size">size</th>
+    <th>type</th>
+    <th>last modified</th>
   </tr>
+  </thead>
+  <tbody>
   % for my $file (@$files) {
   <tr>
     <td class='name'><a href='<%= $file->{url} %>'><%== $file->{name} %></a></td>
@@ -343,15 +347,56 @@ __DATA__
     <td class='mtime'><%= $file->{mtime} %></td>
   </tr>
   % }
+  </tbody>
 </table>
-<hr />
-
+</div>
 
 @@ style.html.ep
-  <style type='text/css'>
-table { width:100%%; }
-.name { text-align:left; }
-.size, .mtime { text-align:right; }
-.type { width:11em; }
-.mtime { width:15em; }
-  </style>
+<style type='text/css'>
+body {
+  font-size: normal 1em sans-serif;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+h2 {
+ font-size: 2.000em;
+ font-weight: 700;
+}
+
+table {
+  width: 90%;
+  margin: 3em;
+  border: 1px solid #222255;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #b9b9ff;
+  font-weight: 700;
+  font-size: 1.300em;
+}
+
+td, th {
+  padding: 1em;
+  text-align: left;
+  border-bottom: 1px solid #999999;
+}
+
+tr:nth-child(even) {
+  background: #dfdfff;
+}
+
+.size {
+  text-align: right;
+  padding-right: 1.700em;
+}
+
+a {
+  font-size: 1.200em;
+  font-weight: 500;
+  color: #534588;
+  text-decoration: none;
+}
+</style>
