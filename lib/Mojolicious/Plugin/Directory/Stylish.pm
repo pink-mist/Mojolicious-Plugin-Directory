@@ -9,6 +9,7 @@ use Encode ();
 use DirHandle;
 use Mojo::Base qw{ Mojolicious::Plugin };
 use Mojolicious::Types;
+use Mojo::Asset::File;
 
 my $types = Mojolicious::Types->new;
 
@@ -68,8 +69,8 @@ sub locate_index {
 sub render_file {
     my ( $c, $file ) = @_;
 
-    my $data = Mojo::Util::slurp($file);
-    $c->render( data => $data, format => get_ext($file) || 'txt' );
+    my $asset = Mojo::Asset::File->new(path => $file);
+    $c->reply->asset($asset);
 }
 
 sub render_indexes {
