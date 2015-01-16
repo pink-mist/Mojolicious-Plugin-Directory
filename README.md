@@ -4,7 +4,7 @@ Mojolicious::Plugin::Directory::Stylish - Serve static files from document root 
 
 # VERSION
 
-version 1.000
+version 1.001
 
 # SYNOPSIS
 
@@ -39,7 +39,7 @@ If root is a file, serve only root file.
 ## `auto_index`
 
     # Mojolicious::Lite
-    plugin Directory => { auto_index => 0 };
+    plugin 'Directory::Stylish' => { auto_index => 0 };
 
 Automatically generate index page for directory, default true.
 
