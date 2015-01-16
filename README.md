@@ -39,7 +39,7 @@ If root is a file, serve only root file.
 ## `auto_index`
 
     # Mojolicious::Lite
-    plugin Directory => { auto_index => 0 };
+    plugin 'Directory::Stylish' => { auto_index => 0 };
 
 Automatically generate index page for directory, default true.
 

@@ -7,7 +7,7 @@ use Test::Mojo;
 use File::Basename;
 
 my $dir = dirname(__FILE__);
-plugin 'Directory', root => $dir, auto_index => 0;
+plugin 'Directory::Stylish', root => $dir, auto_index => 0;
 
 my $t = Test::Mojo->new();
 
