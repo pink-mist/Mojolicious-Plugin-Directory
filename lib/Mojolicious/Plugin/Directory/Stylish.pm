@@ -20,6 +20,7 @@ sub register {
     my $handler     = $args->{handler};
     my $index       = $args->{dir_index};
     my $enable_json = $args->{enable_json};
+    my $auto_index  = $args->{auto_index} // 1;
 
     my $css         = $args->{css} || 'style';
     my $render_opts = $args->{render_opts} || {};
@@ -43,10 +44,11 @@ sub register {
                 if ( $index && ( my $file = locate_index( $index, $path ) ) ) {
                     return render_file( $c, $file );
                 }
-
-                $c->stash(css => $css),
-                render_indexes( $c, $path, $render_opts, $enable_json )
-                    unless ( $c->tx->res->code );
+                if ( $auto_index ) {
+                  $c->stash(css => $css),
+                    render_indexes( $c, $path, $render_opts, $enable_json )
+                        unless ( $c->tx->res->code );
+                }
             }
         },
     );
