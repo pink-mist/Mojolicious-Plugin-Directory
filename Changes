@@ -1,6 +1,8 @@
 Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
+
+1.001     2015-01-16 18:52:43+01:00 Europe/Stockholm
         - Add Su-Shee as contributor
         - Fix auto_index parameter
         - Fix up documentation
