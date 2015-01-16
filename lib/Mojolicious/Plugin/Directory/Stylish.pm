@@ -20,6 +20,7 @@ sub register {
     my $handler     = $args->{handler};
     my $index       = $args->{dir_index};
     my $enable_json = $args->{enable_json};
+    my $auto_index  = $args->{auto_index} // 1;
 
     my $css         = $args->{css} || 'style';
     my $render_opts = $args->{render_opts} || {};
@@ -46,7 +47,7 @@ sub register {
 
                 $c->stash(css => $css),
                 render_indexes( $c, $path, $render_opts, $enable_json )
-                    unless ( $c->tx->res->code );
+                    unless not $auto_index or ( $c->tx->res->code );
             }
         },
     );
