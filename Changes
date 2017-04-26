@@ -1,6 +1,7 @@
 Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
+        - Mojolicious 7.31 removed Mojo::Home->rel_dir.
 
 1.004     2016-07-19 11:42:08+02:00 Europe/Stockholm
         - Mojolicious 7.00 and higher no longer trim whitespace the same way.
