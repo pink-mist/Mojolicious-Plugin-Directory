@@ -10,13 +10,14 @@ use DirHandle;
 use Mojo::Base qw{ Mojolicious::Plugin };
 use Mojolicious::Types;
 use Mojo::Asset::File;
+use Mojo::File;
 
 my $types = Mojolicious::Types->new;
 
 sub register {
     my ( $self, $app, $args ) = @_;
 
-    my $root        = Mojo::Home->new( $args->{root} || Cwd::getcwd );
+    my $root        = Mojo::File->new( $args->{root} || Cwd::getcwd );
     my $handler     = $args->{handler};
     my $index       = $args->{dir_index};
     my $enable_json = $args->{enable_json};
@@ -34,7 +35,9 @@ sub register {
 
             return render_file( $c, $root ) if ( -f $root->to_string() );
 
-            my $path = $root->rel_dir( Mojo::Util::url_unescape( $c->req->url->path ) );
+            my $child = Mojo::Util::url_unescape( $c->req->url->path );
+            $child =~ s!^/!!g;
+            my $path = $root->child( $child );
             $handler->( $c, $path ) if ( ref $handler eq 'CODE' );
 
             if ( -f $path ) {
