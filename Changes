@@ -2,6 +2,9 @@ Revision history for Mojolicious-Plugin-Directory-Stylish
 
 {{$NEXT}}
 
+1.004     2016-07-19 11:42:08+02:00 Europe/Stockholm
+        - Mojolicious 7.00 and higher no longer trim whitespace the same way.
+
 1.003     2015-06-18 20:06:44+02:00 Europe/Stockholm
         - Fix test failure on Mojolicious 6.09 and higher.
 

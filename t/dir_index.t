@@ -15,4 +15,4 @@ plugin
     dir_index => [qw/index.html index.htm/];
 
 my $t = Test::Mojo->new();
-$t->get_ok('/')->status_is(200)->text_like('body' => qr'Hello World');
+$t->get_ok('/')->status_is(200)->text_like('body' => qr'^\s*Hello World\s*$');
