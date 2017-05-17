@@ -2,6 +2,7 @@
 use Mojolicious::Lite;
 use Text::Markdown qw/markdown/;
 use Encode qw/encode_utf8 decode_utf8/;
+use Mojo::File qw/path/;
 
 plugin 'Directory::Stylish', {
     auto_index => 0, # disabled directory index
@@ -10,7 +11,7 @@ plugin 'Directory::Stylish', {
     handler    => sub {
         my ( $c, $path ) = @_;
         return unless $path =~ /\.(md|mkdn)$/;
-        my $markdown = Mojo::Util::slurp($path);
+        my $markdown = path($path)->slurp();
         my $html = markdown( decode_utf8 $markdown );
         $c->render( template => 'markdown', html => $html );
     },
